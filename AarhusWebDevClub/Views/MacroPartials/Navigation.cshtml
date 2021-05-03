@@ -1,0 +1,59 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Web
+
+
+@*
+    This snippet makes a list of links to the of children of the current page using an unordered HTML list.
+
+    How it works:
+    - It uses the Children method to get all child pages
+    - It then generates links so the visitor can go to each page
+*@
+
+@{ var selection = Model.Content.Root().Children.Where(x => x.IsVisible()).ToArray(); 
+
+ var selectionProjects = Umbraco.Content(Guid.Parse("f7a2363a-b9a7-45d5-a87b-6b1445f3613e"))
+    .ChildrenOfType("projectsItem")
+    .Where(x => x.IsVisible());
+}
+
+
+ <!-- Nav -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" id="nav">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand" href="/">Brand Logo</a>
+<ul class="links navbar-nav">
+    
+@if (selection.Length > 0)
+    {
+    	var root = Model.Content.Root();
+       <li class="nav-item">  
+        <a class="nav-link @(Model.Content.Name == root.Name ? "active" : null)" href="/"> @Model.Content.Root().Name</a>
+    	</li>
+    	<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+        <div class="dropdown-menu">
+            @foreach (var child in selectionProjects)
+            {
+
+            <a class="dropdown-item" href="@child.Url">@child.Name</a>
+
+            }
+
+        </div>
+    </li>
+    	foreach (var item in selection)
+    {
+    <li class="nav-item">
+        <a class="nav-link @(Model.Content.Name == @item.Name ? " active" : null)" href="@item.Url">@item.Name</a>
+    </li>
+    
+}
+
+ }
+    
+</ul>
+</nav>

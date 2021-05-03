@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Members>
+@using ContentModels = Umbraco.Web.PublishedModels;
+ @{
+	Layout = "Master.cshtml";
+  }
+	
+<div class="flex-members">
+	<div>
+	   
+       @Umbraco.RenderMacro("ListMembers")
+    </div>
+    
+    <div>
+        @Umbraco.RenderMacro("ListProspectMembers")
+    </div>
+
+</div>

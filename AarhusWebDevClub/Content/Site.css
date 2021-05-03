@@ -1,0 +1,38 @@
+﻿
+main {
+    min-height: 700px;
+}
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+a{
+    color: black;
+}
+
+.About-img img{
+    width: 100%;
+}
+
+main{
+    padding: 50px;
+ 
+}
+
+ul{ margin-bottom: 30px}
+
+.flex-members{
+    display:flex;
+    justify-content: space-around;
+}
